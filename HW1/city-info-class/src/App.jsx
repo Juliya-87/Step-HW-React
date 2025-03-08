@@ -1,4 +1,4 @@
-import React from "react"; // ✅ Добавлен импорт React
+import React from "react";
 import "./App.css";
 
 import placeImg1 from "./assets/images/VeldenPlace1.jpg";

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 import placeImg1 from "./assets/images/VeldenPlace1.jpg";
 import placeImg2 from "./assets/images/VeldenPlace2.jpg";
