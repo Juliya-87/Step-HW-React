@@ -1,0 +1,12 @@
+.info{
+  background: #b5e5f5;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-image {
+  width: 150px;
+  height: auto;
+}
