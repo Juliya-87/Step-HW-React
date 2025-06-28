@@ -1,0 +1,41 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "T-Shirt",
+      "price": 20,
+      "image": "http://localhost:3000/uploads/t-shirt.png",
+      "description": "Comfortable cotton T-shirt available in various sizes."
+    },
+    {
+      "id": 2,
+      "name": "Bag",
+      "price": 50,
+      "image": "http://localhost:3000/uploads/bag.png",
+      "description": "Stylish and spacious bag suitable for everyday use."
+    },
+    {
+      "id": 3,
+      "name": "Smartphone",
+      "price": 300,
+      "image": "http://localhost:3000/uploads/smartphone.png",
+      "description": "Modern smartphone with high-resolution display and fast processor."
+    },
+    {
+      "id": 4,
+      "name": "Shoes",
+      "price": 80,
+      "image": "http://localhost:3000/uploads/shoes.png",
+      "description": "Durable and comfortable shoes perfect for daily wear."
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "role": "admin",
+      "username": "admin",
+      "password": "admin123",
+      "name": "Admin User"
+    }
+  ]
+}

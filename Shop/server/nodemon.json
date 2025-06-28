@@ -1,0 +1,4 @@
+{
+  "ignore": ["data/db.json", "uploads/*", "node_modules/*"],
+  "watch": ["server.js"]
+}
