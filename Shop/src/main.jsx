@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { routes } from "./routes.jsx";
 import { store } from "./store/store.js";
 import { ErrorProvider } from "./contexts/ErrorContext.jsx";
-import { GlobalErrorMessage } from "./shared/components/GlobalErrorMessage.jsx";
+import GlobalErrorMessage from "./shared/components/GlobalErrorMessage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

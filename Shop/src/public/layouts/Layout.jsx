@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router";
-import { Header } from "../components/Header.jsx";
-import { Footer } from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
 import Spinner from "../../shared/components/Spinner.jsx";
 
 export default function Layout() {

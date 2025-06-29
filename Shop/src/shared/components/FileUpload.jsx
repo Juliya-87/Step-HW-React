@@ -2,13 +2,13 @@ import { useFormikContext } from "formik";
 import { useCallback, useState, useEffect, useRef } from "react";
 import { CloseIcon, UploadIcon } from "../../icons/index.js";
 
-export const FileUpload = ({
+export default function FileUpload({
   name,
   label,
   accept = "image/*",
   maxSize = 5 * 1024 * 1024, // 5MB
   className = "",
-}) => {
+}) {
   const { setFieldValue, values, errors, touched } = useFormikContext();
   const [isDragOver, setIsDragOver] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -160,4 +160,4 @@ export const FileUpload = ({
       )}
     </div>
   );
-};
+}

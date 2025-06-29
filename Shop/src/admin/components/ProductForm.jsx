@@ -1,7 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useUploadFileMutation } from "../../store/apiSlice.js";
 import Button from "../../shared/components/Button.jsx";
-import { FileUpload } from "../../shared/components/FileUpload.jsx";
+import FileUpload from "../../shared/components/FileUpload.jsx";
 import { useError } from "../../contexts/ErrorContext.jsx";
 
 const ProductSchema = Yup.object().shape({
@@ -49,31 +50,15 @@ export default function ProductForm({
   isSubmitting = false,
 }) {
   const { withErrorHandling } = useError();
-
-  const uploadFile = async file => {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    const response = await fetch("http://localhost:3000/upload", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Upload failed");
-    }
-
-    const result = await response.json();
-    return result.imageUrl;
-  };
+  const [uploadFile] = useUploadFileMutation();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       await withErrorHandling(async () => {
         let finalImageUrl;
         if (values.image instanceof File) {
-          finalImageUrl = await uploadFile(values.image);
+          const result = await uploadFile(values.image).unwrap();
+          finalImageUrl = result.imageUrl;
         } else if (typeof values.image === "string" && values.image) {
           finalImageUrl = values.image;
         } else {

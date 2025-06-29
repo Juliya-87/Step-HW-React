@@ -1,9 +1,11 @@
 import { redirect } from "react-router";
-import { AuthGuard } from "../shared/components/AuthGuard.jsx";
+import AuthGuard from "../shared/components/AuthGuard.jsx";
 import withLazyLoad from "../shared/hoc/withLazyLoad.jsx";
+import { ROLES } from "../shared/constants/roles.js";
 
 const AdminLayout = withLazyLoad(() => import("./layouts/AdminLayout.jsx"));
 const AdminProducts = withLazyLoad(() => import("./pages/AdminProducts.jsx"));
+const AdminUsers = withLazyLoad(() => import("./pages/AdminUsers.jsx"));
 const AddProduct = withLazyLoad(() => import("./pages/AddProduct.jsx"));
 const EditProduct = withLazyLoad(() => import("./pages/EditProduct.jsx"));
 const AdminLogin = withLazyLoad(() => import("./pages/AdminLogin.jsx"));
@@ -32,7 +34,7 @@ const adminRoutes = [
       },
       {
         Component: () => (
-          <AuthGuard role="admin" redirectPath="/admin/login">
+          <AuthGuard role={ROLES.ADMIN} redirectPath="/admin/login">
             <AdminLayout />
           </AuthGuard>
         ),
@@ -40,6 +42,10 @@ const adminRoutes = [
           {
             index: true,
             Component: AdminProducts,
+          },
+          {
+            path: "users",
+            Component: AdminUsers,
           },
           {
             path: "products/add",

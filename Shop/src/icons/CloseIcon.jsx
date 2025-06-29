@@ -1,4 +1,4 @@
-export const CloseIcon = ({ className = "w-4 h-4", alt = "Close" }) => {
+export default function CloseIcon({ className = "w-4 h-4", alt = "Close" }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +16,4 @@ export const CloseIcon = ({ className = "w-4 h-4", alt = "Close" }) => {
       />
     </svg>
   );
-};
+}

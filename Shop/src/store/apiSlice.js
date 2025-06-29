@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "./axiosBaseQuery.js";
+import { ROLES } from "../shared/constants/roles.js";
 
 export const api = createApi({
   baseQuery: axiosBaseQuery({
@@ -9,8 +10,8 @@ export const api = createApi({
   endpoints(builder) {
     return {
       loginUser: builder.mutation({
-        query: ({ username, password }) => ({
-          url: `/users?username=${username}&password=${password}`,
+        query: ({ username, password, role }) => ({
+          url: `/users?username=${username}&password=${password}&role=${role}`,
           method: "get",
         }),
         transformResponse: res =>
@@ -18,6 +19,22 @@ export const api = createApi({
         invalidatesTags: result => [
           { type: "User", id: result?.username || "LIST" },
         ],
+      }),
+      registerUser: builder.mutation({
+        query: ({ username, password, name }) => ({
+          url: "/users",
+          method: "post",
+          data: { username, password, name, role: ROLES.USER },
+        }),
+        invalidatesTags: [{ type: "User", id: "LIST" }],
+      }),
+      checkUserExists: builder.mutation({
+        query: username => ({
+          url: `/users?username=${username}`,
+          method: "get",
+        }),
+        transformResponse: res =>
+          Array.isArray(res) && res.length > 0 ? res[0] : null,
       }),
       getUser: builder.query({
         query: username => ({
@@ -73,16 +90,65 @@ export const api = createApi({
           { type: "Product", id: "LIST" },
         ],
       }),
+      uploadFile: builder.mutation({
+        query: file => {
+          const formData = new FormData();
+          formData.append("image", file);
+
+          return {
+            url: "/upload",
+            method: "post",
+            data: formData,
+          };
+        },
+      }),
+      getUsers: builder.query({
+        query: () => ({ url: "/users", method: "get" }),
+        providesTags: result =>
+          result
+            ? [
+                ...result.map(({ id }) => ({ type: "User", id })),
+                { type: "User", id: "LIST" },
+              ]
+            : [{ type: "User", id: "LIST" }],
+      }),
+      updateUser: builder.mutation({
+        query: ({ id, ...patch }) => ({
+          url: `/users/${id}`,
+          method: "patch",
+          data: patch,
+        }),
+        invalidatesTags: (result, error, { id }) => [
+          { type: "User", id },
+          { type: "User", id: "LIST" },
+        ],
+      }),
+      deleteUser: builder.mutation({
+        query: id => ({
+          url: `/users/${id}`,
+          method: "delete",
+        }),
+        invalidatesTags: (result, error, id) => [
+          { type: "User", id },
+          { type: "User", id: "LIST" },
+        ],
+      }),
     };
   },
 });
 
 export const {
   useLoginUserMutation,
+  useRegisterUserMutation,
+  useCheckUserExistsMutation,
   useGetUserQuery,
+  useGetUsersQuery,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
   useGetProductsQuery,
   useGetProductQuery,
   useAddProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  useUploadFileMutation,
 } = api;

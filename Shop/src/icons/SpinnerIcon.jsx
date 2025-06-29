@@ -1,4 +1,7 @@
-export const SpinnerIcon = ({ className = "w-5 h-5", alt = "Loading" }) => {
+export default function SpinnerIcon({
+  className = "w-5 h-5",
+  alt = "Loading",
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +25,4 @@ export const SpinnerIcon = ({ className = "w-5 h-5", alt = "Loading" }) => {
       />
     </svg>
   );
-};
+}

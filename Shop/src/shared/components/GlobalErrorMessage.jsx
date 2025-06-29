@@ -2,7 +2,7 @@ import { useError } from "../../contexts/ErrorContext.jsx";
 import { useEffect } from "react";
 import { CloseIcon } from "../../icons/index.js";
 
-export const GlobalErrorMessage = () => {
+export default function GlobalErrorMessage() {
   const { error, clearError } = useError();
 
   useEffect(() => {
@@ -30,4 +30,4 @@ export const GlobalErrorMessage = () => {
       </div>
     </div>
   );
-};
+}

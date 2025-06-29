@@ -1,4 +1,7 @@
-export const UploadIcon = ({ className = "h-12 w-12", alt = "Upload" }) => {
+export default function UploadIcon({
+  className = "h-12 w-12",
+  alt = "Upload",
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,4 +19,4 @@ export const UploadIcon = ({ className = "h-12 w-12", alt = "Upload" }) => {
       />
     </svg>
   );
-};
+}

@@ -1,6 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { useLoginUserMutation } from "../../store/apiSlice.js";
 import Button from "../../shared/components/Button.jsx";
 import { ROLES } from "../../shared/constants/roles.js";
@@ -16,7 +16,7 @@ const LoginSchema = Yup.object().shape({
     .required("Password is required"),
 });
 
-export default function AdminLogin() {
+export default function Login() {
   const navigate = useNavigate();
   const [loginUser, { isLoading }] = useLoginUserMutation();
 
@@ -25,12 +25,12 @@ export default function AdminLogin() {
       const user = await loginUser({
         username: values.username,
         password: values.password,
-        role: ROLES.ADMIN,
+        role: ROLES.USER,
       }).unwrap();
 
       if (user) {
         localStorage.setItem("username", user.username);
-        navigate("/admin");
+        navigate("/");
         return;
       }
 
@@ -47,8 +47,8 @@ export default function AdminLogin() {
       <div className="max-w-md w-full space-y-8">
         <div className="bg-white rounded-xl shadow-md border border-gray-200 p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-black mb-2">Admin Login</h1>
-            <p className="text-gray-600">Sign in to access the admin panel</p>
+            <h1 className="text-3xl font-bold text-black mb-2">Login</h1>
+            <p className="text-gray-600">Sign in to your account</p>
           </div>
 
           <Formik
@@ -123,6 +123,18 @@ export default function AdminLogin() {
                   >
                     Sign In
                   </Button>
+                </div>
+
+                <div className="text-center">
+                  <p className="text-gray-600">
+                    Don't have an account?{" "}
+                    <Link
+                      to="/register"
+                      className="text-[#2d2e2e] hover:text-[#444545] font-medium"
+                    >
+                      Sign up
+                    </Link>
+                  </p>
                 </div>
               </Form>
             )}

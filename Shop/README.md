@@ -1,17 +1,19 @@
 # Shop
 
-React-based e-commerce application with admin panel for managing products.
+React-based e-commerce application with comprehensive admin panel for managing products and users.
 
 ## Features
 
-- Product management (CRUD operations)
+- Product Management (CRUD operations)
+- User Management (CRUD operations, role management)
 - Image upload with drag & drop + URL input
 - Shopping cart with localStorage persistence
-- Admin authentication
+- Admin authentication with role-based access
 - Form validation (Formik + Yup)
 - Responsive design (Tailwind CSS)
 - Lazy loading for better performance
 - Composition-based authentication guards
+- Global error handling system
 
 ## Quick Start
 
@@ -50,31 +52,36 @@ React-based e-commerce application with admin panel for managing products.
 src/
 ├── shared/                 # Shared components and utilities
 │   ├── components/         # Reusable UI components
-│   ├── hooks/             # Custom React hooks
-│   ├── hoc/               # Higher-Order Components
-│   └── pages/             # Shared pages
-├── admin/                 # Admin panel
-│   ├── components/        # Admin-specific components
-│   ├── layouts/          # Admin layouts
-│   └── pages/            # Admin pages
-├── public/               # Public shop
-│   ├── components/       # Shop components
-│   ├── layouts/          # Shop layouts
-│   └── pages/           # Shop pages
-├── store/               # Redux store
-│   ├── apiSlice.js      # RTK Query API
-│   ├── cartSlice.js     # Cart management
-│   └── store.js         # Store setup
-├── contexts/            # React contexts
-│   └── ErrorContext.jsx # Global error handling
-├── icons/               # SVG icons
-└── routes.jsx           # Main routing
+│   ├── constants/          # Application constants
+│   ├── hooks/              # Custom React hooks
+│   ├── hoc/                # Higher-Order Components
+│   └── pages/              # Shared pages
+├── admin/                  # Admin panel
+│   ├── components/         # Admin-specific components
+│   ├── layouts/            # Admin layouts
+│   └── pages/              # Admin pages
+├── public/                 # Public shop
+│   ├── components/         # Shop components
+│   ├── layouts/            # Shop layouts
+│   └── pages/              # Shop pages
+├── store/                  # Redux store
+│   ├── apiSlice.js         # RTK Query API slice
+│   ├── axiosBaseQuery.js   # Axios base query configuration
+│   ├── cartSlice.js        # Cart state management
+│   └── store.js            # Redux store configuration
+├── contexts/               # React contexts
+│   └── ErrorContext.jsx    # Global error handling context
+├── icons/                  # SVG icons
+├── index.css               # Global styles
+├── main.jsx                # Application entry point
+└── routes.jsx              # Main routing configuration
 
 server/
-├── data/               # JSON database
-├── uploads/            # Uploaded images
-├── server.js           # Express server
-└── package.json        # Server dependencies
+├── data/                   # JSON database
+├── uploads/                # Uploaded images
+├── nodemon.json            # Nodemon configuration
+├── package.json            # Server dependencies
+└── server.js               # Express server
 ```
 
 ## Tech Stack
@@ -124,17 +131,28 @@ npm run format:check
 
 ## API Endpoints
 
-- `GET/POST/PATCH/DELETE /products`
-- `POST /upload` (file upload)
-- `GET /users` (admin auth)
+### Products
 
-## Development
+- `GET/POST/PATCH/DELETE /products`
+
+### Users
+
+- `GET/PATCH/DELETE /users`
+- `GET /users?username=...&password=...&role=...` (authentication)
+
+### File Upload
+
+- `POST /upload` (file upload)
+
+## Development Guidelines
 
 - Use `Button` component for consistency
+- Use `HeaderNavLink` for navigation links
 - Follow `cartSlice` patterns for new features
 - Add routes to appropriate route files
 - Use `shared/` components for reusability
 - Implement lazy loading for better performance
+- Use `ErrorContext` for error handling
 
 ## Architecture Patterns
 
@@ -143,3 +161,8 @@ npm run format:check
 - **HOC Pattern** - withLazyLoad for code splitting
 - **Context Pattern** - Global error handling
 - **Redux Toolkit** - State management with RTK Query
+
+## User Roles
+
+- **Admin**: Full access to admin panel, can manage products and users
+- **User**: Regular customer, can browse products and use cart

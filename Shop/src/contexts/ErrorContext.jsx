@@ -10,7 +10,7 @@ export const useError = () => {
   return context;
 };
 
-export const ErrorProvider = ({ children }) => {
+export function ErrorProvider({ children }) {
   const [error, setError] = useState("");
 
   const handleError = error => {
@@ -41,4 +41,4 @@ export const ErrorProvider = ({ children }) => {
   return (
     <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>
   );
-};
+}
