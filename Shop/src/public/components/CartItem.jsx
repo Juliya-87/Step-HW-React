@@ -10,6 +10,9 @@ export default function CartItem({ item, onRemove, onQuantityChange }) {
             src={item.image}
             alt={item.name}
             className="w-14 h-14 object-contain rounded group-hover:underline cursor-pointer"
+            onError={e => {
+              e.target.src = "/no-image.svg";
+            }}
           />
         </Link>
         <div>
@@ -35,7 +38,9 @@ export default function CartItem({ item, onRemove, onQuantityChange }) {
         </div>
       </div>
       <div className="text-right">
-        <p className="text-lg font-semibold">${item.price}</p>
+        <p className="text-lg font-semibold">
+          ${(item.price * item.quantity).toFixed(2)}
+        </p>
         <button
           onClick={() => onRemove(item.id)}
           className="mt-1 p-1.5 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors"

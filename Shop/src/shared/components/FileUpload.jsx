@@ -111,10 +111,9 @@ export default function FileUpload({
               <img
                 src={preview}
                 alt="Preview"
-                className="max-h-48 max-w-full rounded-lg shadow-sm"
+                className="max-h-48 max-w-full min-h-32 min-w-32 rounded-lg shadow-sm object-contain"
                 onError={e => {
-                  e.target.src =
-                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' fill='%23f1ede9'/%3E%3Ctext x='64' y='64' text-anchor='middle' dy='.3em' fill='%236b7280' font-family='Arial' font-size='12'%3EImage not found%3C/text%3E%3C/svg%3E";
+                  e.target.src = "/no-image.svg";
                 }}
               />
               <button

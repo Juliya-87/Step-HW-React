@@ -47,11 +47,16 @@ export default function Product() {
   return (
     <div className="max-w-xl mx-auto">
       <h1 className="text-3xl font-bold mb-4 text-center">{product.name}</h1>
-      <img
-        src={product.image}
-        alt={product.name}
-        className="mb-4 max-h-80 mx-auto"
-      />
+      <div className="mb-4 h-80 flex items-center justify-center">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-contain"
+          onError={e => {
+            e.target.src = "/no-image.svg";
+          }}
+        />
+      </div>
       <p className="mb-2">{product.description}</p>
       <p className="text-lg font-semibold">${product.price}</p>
       <div className="flex items-center gap-4 mt-6">

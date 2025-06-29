@@ -7,7 +7,14 @@ export default function ProductCard({ product }) {
       className="rounded-xl overflow-hidden bg-[#f1ede9] shadow-md hover:shadow-lg transition"
     >
       <div className="aspect-square bg-[#eae7e3] flex items-center justify-center">
-        <img src={product.image} alt={product.name} className="max-h-full" />
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-contain"
+          onError={e => {
+            e.target.src = "/no-image.svg";
+          }}
+        />
       </div>
       <div className="bg-white p-4">
         <h2 className="font-medium text-lg">{product.name}</h2>

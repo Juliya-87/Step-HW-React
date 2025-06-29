@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" stroke="#6B7280" fill="none" viewBox="0 0 48 48" height="16" width="16">
+  <title>no-image</title>
+  <path
+    d="
+      M12 8
+      H36
+      a4 4 0 0 1 4 4
+      V32
+      m0-12 v8
+      m0 0 v8 a4 4 0 0 1 -4 4
+      H12
+      a4 4 0 0 1 -4 -4
+      v-4
+      m32 -4 l-3.172 -3.172 a4 4 0 0 0 -5.656 0
+      L28 28
+      M8 32 l9.172 -9.172 a4 4 0 0 1 5.656 0
+      L28 28
+      m0 0 l4 4
+      M8 12
+      a4 4 0 0 1 4 -4
+    "
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="
+      M12 8
+      H36
+      a4 4 0 0 1 4 4
+      V36
+      a4 4 0 0 1 -4 4
+      H12
+      a4 4 0 0 1 -4 -4
+      V12
+      a4 4 0 0 1 4 -4
+      Z
+    "
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  
+<path d="M 9.156 38.635 L 38.825 9.213" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style=""></path>
+</svg>
